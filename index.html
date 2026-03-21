@@ -1000,6 +1000,15 @@ footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; 
           </div>
         </div>
 
+        <!-- Friends or Family -->
+        <div class="rsvp-field">
+          <label class="rsvp-label">You Are a?</label>
+          <div class="rsvp-toggle-group" id="rsvpRelationGroup">
+            <div class="rsvp-toggle" data-value="Relative">👨‍👩‍👧 Relative</div>
+            <div class="rsvp-toggle" data-value="Friend">🤝 Friend</div>
+          </div>
+        </div>
+
         <!-- Submit -->
         <button class="rsvp-submit" id="rsvpSubmit" onclick="submitRSVP()">
           ✦ &nbsp; Confirm My Attendance &nbsp; ✦
@@ -1338,9 +1347,10 @@ document.querySelectorAll('.invite-text,.arabic-quote,.arabic-sub,.event-card,.f
 // ══ RSVP — Google Sheets Live Integration ══
 const APPS_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxe7OzJtjAPsdoQSz4ScoiLOI840kdB_wl0FGoboXF26zURmtt8Km4swQSxiWWUCD-q/exec';
 
-let rsvpEvent = '';
-let rsvpRoom  = '';
-let rsvpSide  = '';
+let rsvpEvent    = '';
+let rsvpRoom     = '';
+let rsvpSide     = '';
+let rsvpRelation = '';
 
 document.querySelectorAll('#rsvpEventGroup .rsvp-option').forEach(opt => {
   opt.addEventListener('click', () => {
@@ -1369,15 +1379,25 @@ document.querySelectorAll('#rsvpSideGroup .rsvp-toggle').forEach(btn => {
   });
 });
 
+document.querySelectorAll('#rsvpRelationGroup .rsvp-toggle').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('#rsvpRelationGroup .rsvp-toggle').forEach(b => b.classList.remove('selected'));
+    btn.classList.add('selected');
+    rsvpRelation = btn.dataset.value;
+    document.getElementById('rsvpError').style.display = 'none';
+  });
+});
+
 async function submitRSVP() {
   const name  = document.getElementById('rsvpName').value.trim();
   const errEl = document.getElementById('rsvpError');
   const btn   = document.getElementById('rsvpSubmit');
 
-  if (!name)      { errEl.textContent = '✦ Please enter your full name.';                          errEl.style.display='block'; return; }
-  if (!rsvpEvent) { errEl.textContent = '✦ Please select which event(s) you will attend.';         errEl.style.display='block'; return; }
-  if (!rsvpRoom)  { errEl.textContent = '✦ Please let us know if you need accommodation.';         errEl.style.display='block'; return; }
-  if (!rsvpSide)  { errEl.textContent = '✦ Please let us know if you are from Bride\'s or Groom\'s side.'; errEl.style.display='block'; return; }
+  if (!name)         { errEl.textContent = '✦ Please enter your full name.';                                errEl.style.display='block'; return; }
+  if (!rsvpEvent)    { errEl.textContent = '✦ Please select which event(s) you will attend.';              errEl.style.display='block'; return; }
+  if (!rsvpRoom)     { errEl.textContent = '✦ Please let us know if you need accommodation.';              errEl.style.display='block'; return; }
+  if (!rsvpSide)     { errEl.textContent = '✦ Please let us know if you are from Bride\'s or Groom\'s side.'; errEl.style.display='block'; return; }
+  if (!rsvpRelation) { errEl.textContent = '✦ Please let us know if you are a Relative or a Friend.';          errEl.style.display='block'; return; }
 
   btn.disabled = true;
   btn.innerHTML = '✦ &nbsp; Sending your RSVP… &nbsp; ✦';
@@ -1392,7 +1412,7 @@ async function submitRSVP() {
       method: 'POST',
       mode:   'no-cors',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name, event: rsvpEvent, room: rsvpRoom, side: rsvpSide, timestamp })
+      body: JSON.stringify({ name, event: rsvpEvent, room: rsvpRoom, side: rsvpSide, relation: rsvpRelation, timestamp })
     });
     document.getElementById('rsvpForm').style.display    = 'none';
     document.getElementById('rsvpSuccess').style.display = 'block';
