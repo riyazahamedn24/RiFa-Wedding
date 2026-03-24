@@ -481,6 +481,146 @@ body { background:var(--dark); color:var(--cream); font-family:'Cormorant Garamo
   .rsvp-toggle-group { flex-direction:column; }
 }
 
+/* ── Scroll hint after RSVP success ── */
+.scroll-hint {
+  margin-top: 28px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  animation: fadeUp 1s 1.2s ease both;
+}
+.scroll-hint-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.58rem;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.55);
+  text-align: center;
+}
+.scroll-hint-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.scroll-hint-arrow span {
+  display: block;
+  width: 12px; height: 12px;
+  border-right: 2px solid rgba(201,168,76,0.5);
+  border-bottom: 2px solid rgba(201,168,76,0.5);
+  transform: rotate(45deg);
+  animation: arrowBounce 1.2s ease-in-out infinite;
+}
+.scroll-hint-arrow span:nth-child(2) { animation-delay: 0.15s; opacity: 0.65; }
+.scroll-hint-arrow span:nth-child(3) { animation-delay: 0.30s; opacity: 0.35; }
+@keyframes arrowBounce {
+  0%,100% { transform: rotate(45deg) translateY(0);   opacity: 0.9; }
+  50%      { transform: rotate(45deg) translateY(5px); opacity: 0.4; }
+}
+.wishers-section {
+  position: relative; z-index: 2; text-align: center;
+  padding: 80px 24px 70px;
+  background:
+    radial-gradient(ellipse at 50% 0%, rgba(201,168,76,0.06) 0%, transparent 60%),
+    linear-gradient(170deg, #060c1e 0%, #080e20 100%);
+}
+.wishers-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 14px;
+  max-width: 700px;
+  margin: 0 auto;
+}
+.wisher-chip {
+  background: linear-gradient(135deg, rgba(201,168,76,0.07), rgba(201,168,76,0.03));
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 40px;
+  padding: 10px 22px;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(0.88rem, 2.5vw, 1.05rem);
+  font-style: italic;
+  color: rgba(232,213,163,0.75);
+  transition: all 0.3s ease;
+  opacity: 0;
+  transform: translateY(16px);
+}
+.wisher-chip.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+.wisher-chip:hover {
+  background: rgba(201,168,76,0.1);
+  border-color: rgba(201,168,76,0.45);
+  color: var(--gold-light);
+  box-shadow: 0 0 16px rgba(201,168,76,0.12);
+}
+/* ══ FORM SCROLL NUDGE (below submit button) ══ */
+.form-scroll-nudge {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  opacity: 0;
+  animation: fsnAppear 1s 1.8s ease forwards;
+}
+@keyframes fsnAppear {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fsn-line {
+  width: 1px;
+  height: 32px;
+  background: linear-gradient(to bottom, transparent, rgba(201,168,76,0.4));
+}
+.fsn-body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  padding: 14px 28px;
+  border: 1px solid rgba(201,168,76,0.18);
+  border-radius: 40px;
+  background: rgba(201,168,76,0.04);
+  backdrop-filter: blur(6px);
+  animation: fsnGlow 3s ease-in-out infinite;
+}
+@keyframes fsnGlow {
+  0%,100% { border-color: rgba(201,168,76,0.18); box-shadow: none; }
+  50%      { border-color: rgba(201,168,76,0.38); box-shadow: 0 0 18px rgba(201,168,76,0.08); }
+}
+.fsn-text {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.6);
+  white-space: nowrap;
+}
+.fsn-chevrons {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1px;
+}
+.fsn-chevrons span {
+  display: block;
+  width: 10px; height: 10px;
+  border-right: 1.5px solid rgba(201,168,76,0.55);
+  border-bottom: 1.5px solid rgba(201,168,76,0.55);
+  transform: rotate(45deg);
+  animation: fsnBounce 1.3s ease-in-out infinite;
+}
+.fsn-chevrons span:nth-child(2) { animation-delay: 0.15s; opacity: 0.55; }
+.fsn-chevrons span:nth-child(3) { animation-delay: 0.30s; opacity: 0.28; }
+@keyframes fsnBounce {
+  0%,100% { transform: rotate(45deg) translate(0,0); }
+  50%      { transform: rotate(45deg) translate(3px,3px); }
+}
+
+
 footer { background:#030610; text-align:center; padding:32px 24px; border-top:1px solid rgba(201,168,76,0.08); }
 footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; color:rgba(201,168,76,0.25); text-transform:uppercase; }
 
@@ -949,6 +1089,12 @@ footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; 
         <div class="rsvp-success-icon">💛</div>
         <h3>JazakAllahu Khairan!</h3>
         <p>Your RSVP has been received.<br>We look forward to celebrating with you.</p>
+        <div class="scroll-hint">
+          <p class="scroll-hint-text">✦ &nbsp; Scroll down to see the blessings of our well wishers &nbsp; ✦</p>
+          <div class="scroll-hint-arrow">
+            <span></span><span></span><span></span>
+          </div>
+        </div>
       </div>
 
       <!-- FORM -->
@@ -1014,9 +1160,50 @@ footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; 
           ✦ &nbsp; Confirm My Attendance &nbsp; ✦
         </button>
         <div class="rsvp-error" id="rsvpError">Please fill in all fields before submitting.</div>
+
+        <!-- Scroll nudge — always visible below button -->
+        <div class="form-scroll-nudge">
+          <div class="fsn-line"></div>
+          <div class="fsn-body">
+            <div class="fsn-chevrons">
+              <span></span><span></span><span></span>
+            </div>
+            <p class="fsn-text">See who's celebrating with us &nbsp;↓</p>
+          </div>
+        </div>
+
       </div>
 
     </div>
+  </div>
+</section>
+
+<!-- ════════ WELL WISHERS ════════ -->
+<section class="wishers-section">
+  <div class="section-wrap" style="padding-top:0;padding-bottom:0">
+    <div class="fade-section">
+      <p class="section-label">Blessings &amp; Prayers</p>
+      <h2 class="section-title">With the Love &amp; Prayers of Our <em>Well Wishers</em></h2>
+      <div class="gold-divider"><div class="gold-divider-line"></div><div class="gold-divider-diamond"></div><div class="gold-divider-line"></div></div>
+      <p style="font-style:italic;font-size:0.95rem;color:rgba(232,213,163,0.4);text-align:center;margin-bottom:40px;margin-top:-28px">We are blessed by the love and du'a of our dearest ones</p>
+    </div>
+    <div class="wishers-grid">
+      <div class="wisher-chip">✦ Hyder Ali &amp; Katheeja Farveen</div>
+      <div class="wisher-chip">✦ Fathima Farvin</div>
+      <div class="wisher-chip">✦ Yusuf &amp; Shireen</div>
+      <div class="wisher-chip">✦ Dr. Faraz Ahamed</div>
+      <div class="wisher-chip">✦ Idris &amp; Mehtab</div>
+      <div class="wisher-chip">✦ Zubair &amp; Madiha</div>
+      <div class="wisher-chip">✦ Mohammed Sulaiman</div>
+      <div class="wisher-chip">✦ Ahmed &amp; Asma</div>
+      <div class="wisher-chip">✦ Neha Yusuf</div>
+      <div class="wisher-chip">✦ Salman</div>
+      <div class="wisher-chip">✦ Rajeh</div>
+      <div class="wisher-chip">✦ Sarah</div>
+      <div class="wisher-chip">✦ Faiz</div>
+      <div class="wisher-chip">✦ Luqman</div>
+    </div>
+
   </div>
 </section>
 
@@ -1171,7 +1358,12 @@ updateCountdown(); setInterval(updateCountdown, 1000);
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-document.querySelectorAll('.invite-text,.arabic-quote,.arabic-sub,.event-card,.family-card,.transport-card,.fade-section,.closing-monogram,.closing-quote,.closing-sign,.closing-names-big,.countdown-wrap,.dua-wrap').forEach(el => observer.observe(el));
+document.querySelectorAll('.invite-text,.arabic-quote,.arabic-sub,.event-card,.family-card,.transport-card,.fade-section,.closing-monogram,.closing-quote,.closing-sign,.closing-names-big,.countdown-wrap,.dua-wrap,.rsvp-card,.wisher-chip').forEach((el, i) => {
+  if (el.classList.contains('wisher-chip')) {
+    el.style.transitionDelay = `${(i % 10) * 0.08}s`;
+  }
+  observer.observe(el);
+});
 
 // ══ CONSTELLATION AROUND COUPLE IMAGE ══
 (function() {
