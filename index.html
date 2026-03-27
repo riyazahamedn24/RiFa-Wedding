@@ -780,57 +780,25 @@ footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; 
 /* ── Twinkling names in hero ── */
 .arch-names .name1 {
   font-size:clamp(2.4rem,9vw,3.8rem); font-weight:400; display:block;
-  position:relative;
-  background: linear-gradient(90deg,
-    #8B6914 0%,
-    #C9A84C 15%,
-    #FFF8E7 30%,
-    #FFFDF5 40%,
-    #E8D5A3 50%,
-    #FFFDF5 60%,
-    #FFF8E7 70%,
-    #C9A84C 85%,
-    #8B6914 100%);
-  background-size: 400% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: nameSparkle1 3.5s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(201,168,76,0.5)) drop-shadow(0 0 20px rgba(255,245,200,0.3));
+  color: #E8D5A3;
+  animation: nameGlow1 5s ease-in-out infinite;
+  will-change: opacity;
 }
 .arch-names .name2 {
   font-size:clamp(2.4rem,9vw,3.8rem); font-weight:400; display:block;
-  position:relative;
-  background: linear-gradient(90deg,
-    #8B6914 0%,
-    #C9A84C 15%,
-    #FFF8E7 30%,
-    #FFFDF5 40%,
-    #E8D5A3 50%,
-    #FFFDF5 60%,
-    #FFF8E7 70%,
-    #C9A84C 85%,
-    #8B6914 100%);
-  background-size: 400% auto;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: nameSparkle2 3.5s ease-in-out infinite;
-  filter: drop-shadow(0 0 8px rgba(201,168,76,0.5)) drop-shadow(0 0 20px rgba(255,245,200,0.3));
+  color: #E8D5A3;
+  animation: nameGlow2 5s ease-in-out infinite;
+  will-change: opacity;
 }
-@keyframes nameSparkle1 {
-  0%    { background-position:100% center; filter:drop-shadow(0 0 6px rgba(201,168,76,0.4)) drop-shadow(0 0 12px rgba(201,168,76,0.2)); }
-  25%   { background-position:60% center;  filter:drop-shadow(0 0 18px rgba(255,248,180,0.9)) drop-shadow(0 0 35px rgba(255,235,100,0.6)) drop-shadow(0 0 55px rgba(201,168,76,0.4)); }
-  50%   { background-position:0% center;   filter:drop-shadow(0 0 8px rgba(201,168,76,0.5)) drop-shadow(0 0 20px rgba(201,168,76,0.3)); }
-  75%   { background-position:40% center;  filter:drop-shadow(0 0 22px rgba(255,252,210,0.95)) drop-shadow(0 0 42px rgba(255,235,100,0.65)) drop-shadow(0 0 65px rgba(201,168,76,0.45)); }
-  100%  { background-position:100% center; filter:drop-shadow(0 0 6px rgba(201,168,76,0.4)) drop-shadow(0 0 12px rgba(201,168,76,0.2)); }
+@keyframes nameGlow1 {
+  0%   { color: #C9A84C; text-shadow: 0 0 8px rgba(201,168,76,0.15); }
+  50%  { color: #F5EDD8; text-shadow: 0 0 20px rgba(232,213,163,0.35), 0 0 40px rgba(201,168,76,0.1); }
+  100% { color: #C9A84C; text-shadow: 0 0 8px rgba(201,168,76,0.15); }
 }
-@keyframes nameSparkle2 {
-  0%    { background-position:0% center;   filter:drop-shadow(0 0 8px rgba(201,168,76,0.5)) drop-shadow(0 0 20px rgba(201,168,76,0.3)); }
-  25%   { background-position:40% center;  filter:drop-shadow(0 0 22px rgba(255,252,210,0.95)) drop-shadow(0 0 42px rgba(255,235,100,0.65)) drop-shadow(0 0 65px rgba(201,168,76,0.45)); }
-  50%   { background-position:100% center; filter:drop-shadow(0 0 6px rgba(201,168,76,0.4)) drop-shadow(0 0 12px rgba(201,168,76,0.2)); }
-  75%   { background-position:60% center;  filter:drop-shadow(0 0 18px rgba(255,248,180,0.9)) drop-shadow(0 0 35px rgba(255,235,100,0.6)) drop-shadow(0 0 55px rgba(201,168,76,0.4)); }
-  100%  { background-position:0% center;   filter:drop-shadow(0 0 8px rgba(201,168,76,0.5)) drop-shadow(0 0 20px rgba(201,168,76,0.3)); }
+@keyframes nameGlow2 {
+  0%   { color: #F5EDD8; text-shadow: 0 0 20px rgba(232,213,163,0.35), 0 0 40px rgba(201,168,76,0.1); }
+  50%  { color: #C9A84C; text-shadow: 0 0 8px rgba(201,168,76,0.15); }
+  100% { color: #F5EDD8; text-shadow: 0 0 20px rgba(232,213,163,0.35), 0 0 40px rgba(201,168,76,0.1); }
 }
 
 /* ── Hero extra pulse ring ── */
@@ -1177,7 +1145,7 @@ footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; 
         <h3 class="family-name-main">Fayizah</h3>
         <p class="family-role-tag">Financial Analyst</p>
         <ul class="family-tree">
-          <li><span class="role">Granddaughter of</span><span class="person-name">Late Haji Seenipakeer &amp; Khaironisa</span></li>
+          <li><span class="role">Granddaughter of</span><span class="person-name">Late Haji Seenipakeer &amp; Late Ameer Jahan Beevi</span></li>
           <li><span class="role">And</span><span class="person-name">Haji Mohamed Faruk &amp; Kamila Banu</span></li>
           <li><span class="role">Daughter of</span><span class="person-name">Janab Abdul Mutalip &amp; Begum Sheerin Banu</span></li>
         </ul>
