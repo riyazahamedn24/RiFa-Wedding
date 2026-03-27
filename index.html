@@ -634,6 +634,123 @@ body { background:var(--dark); color:var(--cream); font-family:'Cormorant Garamo
   0%, 100% { transform: rotate(45deg) translate(0, 0);    opacity: inherit; }
   40%       { transform: rotate(45deg) translate(4px, 4px); opacity: 1; }
 }
+
+/* ══ BABIES / LITTLE STARS ══ */
+.little-stars-inline {
+  margin-top: 40px;
+}
+.lsi-divider {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  max-width: 340px;
+  margin: 0 auto 32px;
+}
+.lsi-line {
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(201,168,76,0.35), transparent);
+}
+.lsi-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.52rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: rgba(201,168,76,0.45);
+  white-space: nowrap;
+}
+.babies-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.baby-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(24px) scale(0.92);
+  transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.16,1,0.3,1);
+}
+.baby-card.visible {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.baby-orb {
+  width: 72px; height: 72px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,248,220,0.18), rgba(201,168,76,0.06));
+  border: 1px solid rgba(201,168,76,0.28);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.7rem;
+  position: relative;
+  box-shadow: 0 0 18px rgba(201,168,76,0.1), inset 0 0 12px rgba(201,168,76,0.05);
+  animation: babyFloat ease-in-out infinite;
+}
+.baby-card:nth-child(1) .baby-orb { animation-duration: 3.8s; animation-delay: 0s; }
+.baby-card:nth-child(2) .baby-orb { animation-duration: 4.2s; animation-delay: 0.5s; }
+.baby-card:nth-child(3) .baby-orb { animation-duration: 3.5s; animation-delay: 1.0s; }
+.baby-card:nth-child(4) .baby-orb { animation-duration: 4.6s; animation-delay: 0.3s; }
+.baby-card:nth-child(5) .baby-orb { animation-duration: 3.9s; animation-delay: 0.8s; }
+@keyframes babyFloat {
+  0%,100% { transform: translateY(0px);  box-shadow: 0 0 18px rgba(201,168,76,0.1), inset 0 0 12px rgba(201,168,76,0.05); }
+  50%      { transform: translateY(-8px); box-shadow: 0 8px 28px rgba(201,168,76,0.18), inset 0 0 16px rgba(201,168,76,0.08); }
+}
+.baby-orb-ring {
+  position: absolute; inset: -5px;
+  border-radius: 50%;
+  border: 1px dashed rgba(201,168,76,0.2);
+  animation: babyRingSpin linear infinite;
+}
+.baby-card:nth-child(odd)  .baby-orb-ring { animation-duration: 12s; }
+.baby-card:nth-child(even) .baby-orb-ring { animation-duration: 16s; animation-direction: reverse; }
+@keyframes babyRingSpin { to { transform: rotate(360deg); } }
+.baby-sparkles {
+  position: absolute; inset: -14px;
+  pointer-events: none;
+}
+.baby-sparkle {
+  position: absolute;
+  font-size: 0.55rem;
+  color: var(--gold);
+  opacity: 0;
+  animation: babySparkAnim ease-in-out infinite;
+}
+@keyframes babySparkAnim {
+  0%,100% { opacity: 0; transform: scale(0.4) rotate(0deg); }
+  50%      { opacity: 0.7; transform: scale(1) rotate(180deg); }
+}
+.baby-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.05rem;
+  font-style: italic;
+  color: rgba(232,213,163,0.82);
+  letter-spacing: 0.04em;
+}
+@media(max-width:600px){
+  .babies-grid {
+    flex-wrap: nowrap;
+    gap: 6px;
+    max-width: 100%;
+    padding: 0 4px;
+    justify-content: center;
+  }
+  .baby-card { gap: 7px; min-width: 0; }
+  .baby-orb { width: 52px; height: 52px; font-size: 1.2rem; }
+  .baby-orb-ring { inset: -4px; }
+  .baby-sparkles { inset: -10px; }
+  .baby-name { font-size: 0.8rem; letter-spacing: 0.01em; }
+}
+@media(max-width:380px){
+  .baby-orb { width: 46px; height: 46px; font-size: 1.05rem; }
+  .baby-name { font-size: 0.72rem; }
+  .babies-grid { gap: 4px; }
+}
+
 footer { background:#030610; text-align:center; padding:32px 24px; border-top:1px solid rgba(201,168,76,0.08); }
 footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; color:rgba(201,168,76,0.25); text-transform:uppercase; }
 
@@ -1219,6 +1336,37 @@ footer p { font-family:'Cinzel',serif; font-size:0.55rem; letter-spacing:0.3em; 
       <div class="wisher-chip">✦ Mr. Sultan</div>
     </div>
 
+    <!-- Our Little Stars -->
+    <div class="little-stars-inline">
+      <div class="lsi-divider">
+        <div class="lsi-line"></div>
+        <span class="lsi-label">Our Little Stars</span>
+        <div class="lsi-line"></div>
+      </div>
+      <div class="babies-grid">
+        <div class="baby-card">
+          <div class="baby-orb">🌙<div class="baby-orb-ring"></div><div class="baby-sparkles"></div></div>
+          <span class="baby-name">Zaeem</span>
+        </div>
+        <div class="baby-card">
+          <div class="baby-orb">⭐<div class="baby-orb-ring"></div><div class="baby-sparkles"></div></div>
+          <span class="baby-name">Zayd</span>
+        </div>
+        <div class="baby-card">
+          <div class="baby-orb">🌸<div class="baby-orb-ring"></div><div class="baby-sparkles"></div></div>
+          <span class="baby-name">Inara</span>
+        </div>
+        <div class="baby-card">
+          <div class="baby-orb">✨<div class="baby-orb-ring"></div><div class="baby-sparkles"></div></div>
+          <span class="baby-name">Yusuf</span>
+        </div>
+        <div class="baby-card">
+          <div class="baby-orb">🌟<div class="baby-orb-ring"></div><div class="baby-sparkles"></div></div>
+          <span class="baby-name">Zakariya</span>
+        </div>
+      </div>
+    </div>
+
   </div>
 </section>
 
@@ -1373,7 +1521,7 @@ updateCountdown(); setInterval(updateCountdown, 1000);
 const observer = new IntersectionObserver(entries => {
   entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
 }, { threshold: 0.1 });
-document.querySelectorAll('.invite-text,.arabic-quote,.arabic-sub,.event-card,.family-card,.transport-card,.fade-section,.closing-monogram,.closing-quote,.closing-sign,.closing-names-big,.countdown-wrap,.dua-wrap,.rsvp-card,.wisher-chip').forEach((el, i) => {
+document.querySelectorAll('.invite-text,.arabic-quote,.arabic-sub,.event-card,.family-card,.transport-card,.fade-section,.closing-monogram,.closing-quote,.closing-sign,.closing-names-big,.countdown-wrap,.dua-wrap,.rsvp-card,.wisher-chip,.baby-card').forEach((el, i) => {
   if (el.classList.contains('wisher-chip')) {
     el.style.transitionDelay = `${(i % 10) * 0.08}s`;
   }
@@ -1548,6 +1696,26 @@ document.querySelectorAll('.invite-text,.arabic-quote,.arabic-sub,.event-card,.f
     container.appendChild(s);
   });
 })();
+
+
+// ══ BABY SPARKLES ══
+document.querySelectorAll('.baby-sparkles').forEach((wrap, wi) => {
+  const chars = ['✦','✧','⋆','★','·'];
+  const positions = [
+    {top:'0%',left:'50%'},{top:'25%',right:'0%'},{bottom:'0%',left:'50%'},
+    {top:'25%',left:'0%'},{top:'65%',right:'5%'},{top:'65%',left:'5%'},
+  ];
+  positions.forEach((pos, i) => {
+    const s = document.createElement('span');
+    s.className = 'baby-sparkle';
+    s.textContent = chars[i % chars.length];
+    const delay = (wi * 0.4 + i * 0.35).toFixed(2);
+    const dur   = (2.2 + i * 0.3).toFixed(2);
+    s.style.cssText = Object.entries(pos).map(([k,v]) => `${k}:${v}`).join(';')
+      + `;animation-delay:${delay}s;animation-duration:${dur}s;font-size:${0.45 + (i%3)*0.12}rem`;
+    wrap.appendChild(s);
+  });
+});
 
 // ══ RSVP LOGIC ══
 // ⚠️ SETUP REQUIRED: Replace this URL with your Google Apps Script Web App URL
